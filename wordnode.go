@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 type WordNode struct {
-	bits Bitstring
+	bits  Bitstring
 	words map[string]bool
 }
 
@@ -24,22 +24,22 @@ func NewNode(word string) *WordNode {
 	node.words = make(map[string]bool)
 	node.words[word] = true
 
-	 for _, r := range word {
-	 	// Normalize to zero
-        c := r - 65  
+	for _, r := range word {
+		// Normalize to zero
+		c := r - 65
 
-	 	// Handle the Röck Döts    
-        if c == 132 {
-        	c = 26
-        }
-        if c == 131 {
-        	c = 27
-        }
-        if c == 149 {
-        	c = 28
-        }
+		// Handle the Röck Döts
+		if c == 132 {
+			c = 26
+		}
+		if c == 131 {
+			c = 27
+		}
+		if c == 149 {
+			c = 28
+		}
 
-        node.bits.SetBit(int(c))
-    }
+		node.bits.SetBit(int(c))
+	}
 	return node
 }
