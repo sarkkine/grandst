@@ -4,7 +4,11 @@ import "fmt"
 
 type WordNode struct {
 	bits  Bitstring
-	words map[string]bool
+	words map[string] bool
+}
+
+func (n WordNode) String() string {
+	return fmt.Sprintf("%b (%d) %v", n.bits, n.Weight(), n.words)
 }
 
 func (n WordNode) Weight() uint64 {
@@ -15,9 +19,6 @@ func (n WordNode) CombinedWeight(n2 *WordNode) uint64 {
 	return n.bits.CombinedHamming(n2.bits)
 }
 
-func (n WordNode) String() string {
-	return fmt.Sprintf("%b (%d) %v", n.bits, n.Weight(), n.words)
-}
 
 func NewNode(word string) *WordNode {
 	node := new(WordNode)
