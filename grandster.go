@@ -90,6 +90,9 @@ func findMaxNodePairs(nodes map[Bitstring]*WordNode) []NodePair {
 		for _, node2 := range nodes {
 
 			weight := node1.CombinedWeight(node2)
+			if weight < maxWeight {
+			   continue
+			}
 
 			nodePair := NodePair {node1: node1, node2: node2, weight: weight}
 
