@@ -3,7 +3,7 @@ package main
 import ( 
 	"strings"
  	"regexp"
- 	"os"
+	"os"
  	"fmt"
  	"bufio"
  	"log"
@@ -29,7 +29,10 @@ func main() {
 
 func grandestWordPairs(path string) []NodePair {
 	nodes := make(map[Bitstring]*WordNode)
-	stripperRegEx, _ := regexp.Compile("[^A-ZÅÄÖa-zåäö-]+")
+	stripperRegEx, err := regexp.Compile("[^\x41-\x5A\u00C0-\u00DF-]+")
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	file, err := os.Open(path)
 	if err != nil {
@@ -41,7 +44,8 @@ func grandestWordPairs(path string) []NodePair {
 	for scanner.Scan() {
 		words := strings.Fields(scanner.Text())
 		for _,word := range words {
-			word = strings.ToUpper(stripperRegEx.ReplaceAllString(word, ""))
+			word = strings.ToUpper(word)
+			word = stripperRegEx.ReplaceAllString(word, "")
 			if word != "" {
 				wordToNode(word, nodes)
 			}

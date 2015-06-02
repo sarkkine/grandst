@@ -29,15 +29,9 @@ func NewNode(word string) *WordNode {
 		// Normalize to zero
 		c := r - 65
 
-		// Handle the Röck Döts
-		if c == 132 {
-			c = 26
-		}
-		if c == 131 {
-			c = 27
-		}
-		if c == 149 {
-			c = 28
+		// Handle lé Röck Döts
+		if c >= 127 {
+			c = c - 99
 		}
 
 		node.bits.SetBit(int(c))
