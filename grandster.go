@@ -7,12 +7,13 @@ import (
  	"fmt"
  	"bufio"
  	"log"
+	"time"
  )
 
 type NodePair struct {
 	node1 *WordNode
 	node2 *WordNode
-	weight uint64
+	weight int
 }
 
 func (n NodePair) String() string {
@@ -20,8 +21,15 @@ func (n NodePair) String() string {
 }
 
 func main() {
+     	if(len(os.Args) != 2) {
+		log.Fatal("Usage: " + os.Args[0] + " <inputfile>")
+	}
 	inputFile := os.Args[1]
+
+	start := time.Now()
 	grandestWordPairs := grandestWordPairs(inputFile)
+	fmt.Printf("Finding grandest pairs took %s\n\n", time.Since(start))
+
 	for _,pair := range grandestWordPairs {
 		fmt.Println(pair)
 	}
@@ -40,18 +48,20 @@ func grandestWordPairs(path string) []NodePair {
 	}
 	defer file.Close()
 
-    scanner := bufio.NewScanner(file)
+	var wordCount int
+	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
 		words := strings.Fields(scanner.Text())
-		for _,word := range words {
+		for _, word := range words {
 			word = strings.ToUpper(word)
 			word = stripperRegEx.ReplaceAllString(word, "")
 			if word != "" {
+			   	wordCount++
 				wordToNode(word, nodes)
 			}
 		}
 	}
-	fmt.Println(len(nodes))
+	fmt.Printf("\n%v words, %v top level nodes\n", wordCount, len(nodes))
 
 	return findMaxNodePairs(nodes)
 }
@@ -85,10 +95,10 @@ func wordToNode(word string, nodes map[Bitstring]*WordNode) {
 }
 
 func findMaxNodePairs(nodes map[Bitstring]*WordNode) []NodePair {	
-	pairs := make(map[uint64] []NodePair) 
+	pairs := make(map[int] []NodePair) 
 	foundPairs := make(map[*WordNode] map[*WordNode]bool)
 
-	var maxWeight uint64
+	var maxWeight int
 	maxWeight = 0
 	for _, node1 := range nodes {
 		for _, node2 := range nodes {

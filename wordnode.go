@@ -11,12 +11,12 @@ func (n WordNode) String() string {
 	return fmt.Sprintf("%b (%d) %v", n.bits, n.Weight(), n.words)
 }
 
-func (n WordNode) Weight() uint64 {
-	return n.bits.Hamming()
+func (n WordNode) Weight() int {
+	return int(n.bits.Hamming())
 }
 
-func (n WordNode) CombinedWeight(n2 *WordNode) uint64 {
-	return n.bits.CombinedHamming(n2.bits)
+func (n WordNode) CombinedWeight(n2 *WordNode) int {
+	return int(n.bits.CombinedHamming(n2.bits))
 }
 
 
