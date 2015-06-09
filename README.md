@@ -10,7 +10,7 @@
 
 ##Esimerkkituloksia (MacBook Pro 2.6GHz i7):
 
-### Alastalon salissa (1,7 MB)
+### [Alastalon salissa](testfiles/alastalon_salissa.txt) (1,7 MB)
     215267 words, 1207 top level nodes
     Finding grandest pairs took 888.643872ms
     21 map[JÄRJENSYHYTTELEMISEN:true] map[KÖYDENPINGOTTUVAA:true]
@@ -21,14 +21,14 @@
     21 map[VAHINGONPILLASTUMISEN:true] map[KIRJOITUSPÖYDÄN:true]
     21 map[KIRJOITUSPÖYDÄN:true] map[VAHINGONKAMFIILI:true]
 
-### Roget's thesaurus (1,4 MB)
+### [Roget's thesaurus](testfiles/rogets-thesaurus.txt) (1,4 MB)
     196494 words, 2849 top level nodes
     Finding grandest pairs took 1.740335521s
     
     21 map[TWOPENNYHALFPENNY:true] map[BLACKGUARDISM:true]
     21 map[UNJUSTIFIABLE:true] map[TRADEMARKCOPYRIGHT:true]
 
-### Les Misérables I (700 kB)
+### [Les Misérables I](testfiles/les_miserables.txt) (700 kB)
     114368 words, 1723 top level nodes
     Finding grandest pairs took 703.295055ms
     
@@ -49,7 +49,7 @@
     21 map[MONTRE-DE-CHAMPIGNY:true] map[CHARLES-FRANÇOIS-BIENVENU:true]
     21 map[SAINT-GERMAIN-DES-PRÉS:true] map[CHARLES-FRANÇOIS-BIENVENU:true]
 
-###History of the Decline and Fall of the Roman Empire (9,3 MB)
+### [History of the Decline and Fall of the Roman Empire](testfiles/decline_and_fall.txt) (9,3 MB)
     1557783 words, 2573 top level nodes
     Finding grandest pairs took 7.383238459s
     
